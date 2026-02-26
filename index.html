@@ -2,14 +2,12 @@
 <html>
 <head>
 <title>UGHS Examination Result 2025-2026</title>
-
 <style>
 body{
 font-family:Arial;
 background:#f2f2f2;
 text-align:center;
 }
-
 .container{
 background:white;
 padding:20px;
@@ -18,28 +16,28 @@ width:95%;
 max-width:750px;
 box-shadow:0 0 10px gray;
 }
-
 input{
 padding:10px;
 width:70%;
 }
-
 button{
 padding:10px 15px;
-background:blue;
+background:green;
 color:white;
 border:none;
+cursor:pointer;
 }
-
 table{
 width:100%;
 margin-top:15px;
 border-collapse:collapse;
 }
-
 table,th,td{
 border:1px solid black;
 padding:8px;
+}
+h3{
+margin-top:20px;
 }
 </style>
 </head>
@@ -81,4 +79,40 @@ var data=students[roll];
 
 if(data){
 
-var total = data.gk + data.math + data
+var total = data.gk + data.math + data.english;
+var status = total >= 120 ? "PASS" : "FAIL";
+
+document.getElementById("result").innerHTML =
+
+"<h3>RESULT DETAILS</h3>"+
+
+"<p><b>Roll No:</b> "+roll+"</p>"+
+"<p><b>Name:</b> "+data.name+"</p>"+
+"<p><b>District:</b> Gajapati</p>"+
+"<p><b>Centre Name:</b> Koinpur</p>"+
+"<p><b>Centre Code:</b> GK2025</p>"+
+
+"<table>"+
+"<tr><th>Subject</th><th>Full Mark</th><th>Pass Mark</th><th>Mark Secured</th></tr>"+
+
+"<tr><td>GK</td><td>70</td><td>35</td><td>"+data.gk+"</td></tr>"+
+"<tr><td>Math</td><td>70</td><td>35</td><td>"+data.math+"</td></tr>"+
+"<tr><td>English</td><td>60</td><td>30</td><td>"+data.english+"</td></tr>"+
+
+"</table>"+
+
+"<p><b>Total Marks:</b> "+total+" / 200</p>"+
+"<p><b>Pass Mark:</b> 120</p>"+
+"<p><b>Result Status:</b> "+status+"</p>";
+
+}
+else{
+document.getElementById("result").innerHTML="<h3>Result Not Found</h3>";
+}
+
+}
+
+</script>
+
+</body>
+</html>
