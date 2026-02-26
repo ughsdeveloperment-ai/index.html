@@ -2,12 +2,14 @@
 <html>
 <head>
 <title>UGHS Examination Result 2025-2026</title>
+
 <style>
 body{
 font-family:Arial;
 background:#f2f2f2;
 text-align:center;
 }
+
 .container{
 background:white;
 padding:20px;
@@ -16,24 +18,28 @@ width:90%;
 max-width:700px;
 box-shadow:0 0 10px gray;
 }
+
 input{
 padding:10px;
 width:70%;
 }
+
 button{
 padding:10px 15px;
-background:blue;
+background:green;
 color:white;
 border:none;
 }
+
 table{
 width:100%;
 margin-top:15px;
 border-collapse:collapse;
 }
+
 table,th,td{
 border:1px solid black;
-padding:6px;
+padding:8px;
 }
 </style>
 </head>
@@ -41,7 +47,10 @@ padding:6px;
 <body>
 
 <div class="container">
+
 <h2>UGHS EXAMINATION RESULT 2025-2026</h2>
+<p><b>Centre Name:</b> Koinpur</p>
+<p><b>Centre Code:</b> 2025</p>
 
 <input type="text" id="roll" placeholder="Enter Roll Number">
 <button onclick="searchResult()">Search</button>
@@ -54,133 +63,51 @@ padding:6px;
 
 var students = {
 
-"E-2320026":{
-name:"Mikha Sabar",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:65,Odia:70,Math:80,Science:75,Social:68}
-},
-
-"E-2320032":{
-name:"Sanjaya Kumar Mandal",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:55,Odia:60,Math:58,Science:62,Social:59}
-},
-
-"E-2320030":{
-name:"Debaraj Gamango",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:72,Odia:74,Math:85,Science:78,Social:80}
-},
-
-"E-2320028":{
-name:"Purna Chandra Sabar",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:50,Odia:55,Math:60,Science:58,Social:54}
-},
-
-"E-2320034":{
-name:"Sanjeeba Mandal",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:68,Odia:71,Math:73,Science:69,Social:72}
-},
-
-"E-2320033":{
-name:"Shanku Sabar",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:45,Odia:50,Math:48,Science:52,Social:49}
-},
-
-"E-2320031":{
-name:"Mamita Gamango",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:66,Odia:69,Math:74,Science:70,Social:65}
-},
-
-"E-2320035":{
-name:"Stiphen Gamango",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:61,Odia:63,Math:67,Science:64,Social:60}
-},
-
-"E-2320025":{
-name:"Umacharan Mandal",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:59,Odia:62,Math:65,Science:60,Social:58}
-},
-
-"E-2320037":{
-name:"Jagannath Gamango",
-district:"Rayagada",
-centre:"UGHS College",
-centrecode:"101",
-subjects:{English:70,Odia:75,Math:78,Science:72,Social:74}
-}
+"E-2320026":{name:"Mikha Sabar",gk:40,math:45,english:42},
+"E-2320032":{name:"Sanjaya Kumar Mandal",gk:38,math:44,english:40},
+"E-2320030":{name:"Debaraj Gamango",gk:45,math:48,english:44},
+"E-2320028":{name:"Purna Chandra Sabar",gk:35,math:42,english:43},
+"E-2320034":{name:"Sanjeeba Mandal",gk:41,math:46,english:39},
+"E-2320033":{name:"Shanku Sabar",gk:36,math:43,english:41},
+"E-2320031":{name:"Mamita Gamango",gk:42,math:47,english:38},
+"E-2320035":{name:"Stiphen Gamango",gk:39,math:44,english:40},
+"E-2320025":{name:"Umacharan Mandal",gk:37,math:45,english:41},
+"E-2320037":{name:"Jagannath Gamango",gk:44,math:46,english:43}
 
 };
 
 function searchResult(){
+
 var roll=document.getElementById("roll").value.trim();
 var data=students[roll];
 
 if(data){
 
-var total=0;
-var subjectRows="";
-
-for(var subject in data.subjects){
-total+=data.subjects[subject];
-subjectRows+="<tr><td>"+subject+"</td><td>"+data.subjects[subject]+"</td></tr>";
-}
-
-var percentage=(total/5).toFixed(2);
-var division="";
-
-if(percentage>=60){
-division="First Division";
-}
-else if(percentage>=45){
-division="Second Division";
-}
-else{
-division="Third Division";
-}
+var total = data.gk + data.math + data.english;
+var resultStatus = total >= 120 ? "PASS" : "FAIL";
 
 document.getElementById("result").innerHTML=
+
 "<h3>Result Details</h3>"+
 "<p><b>Name:</b> "+data.name+"</p>"+
 "<p><b>Roll No:</b> "+roll+"</p>"+
-"<p><b>District:</b> "+data.district+"</p>"+
-"<p><b>Centre Name:</b> "+data.centre+"</p>"+
-"<p><b>Centre Code:</b> "+data.centrecode+"</p>"+
-"<table><tr><th>Subject</th><th>Marks</th></tr>"+
-subjectRows+
+
+"<table>"+
+"<tr><th>Subject</th><th>Marks</th></tr>"+
+"<tr><td>GK</td><td>"+data.gk+"</td></tr>"+
+"<tr><td>Math</td><td>"+data.math+"</td></tr>"+
+"<tr><td>English</td><td>"+data.english+"</td></tr>"+
 "</table>"+
-"<p><b>Total Marks:</b> "+total+"</p>"+
-"<p><b>Percentage:</b> "+percentage+"%</p>"+
-"<p><b>Division:</b> "+division+"</p>";
+
+"<p><b>Total Marks:</b> "+total+" / 200</p>"+
+"<p><b>Pass Marks:</b> 120</p>"+
+"<p><b>Result:</b> "+resultStatus+"</p>";
 
 }
 else{
 document.getElementById("result").innerHTML="<h3>Result Not Found</h3>";
 }
+
 }
 
 </script>
