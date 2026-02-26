@@ -1,113 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>UGHS Examination Result 2025-2026</title>
-<style>
-body{
-font-family:Arial;
-background:#f2f2f2;
-text-align:center;
-}
-.container{
-background:white;
-padding:20px;
-margin:20px auto;
-width:95%;
-max-width:750px;
-box-shadow:0 0 10px gray;
-}
-input{
-padding:10px;
-width:70%;
-}
-button{
-padding:10px 15px;
-background:green;
-color:white;
-border:none;
-cursor:pointer;
-}
-table{
-width:100%;
-margin-top:15px;
-border-collapse:collapse;
-}
-table,th,td{
-border:1px solid black;
-padding:8px;
-}
-h3{
-margin-top:20px;
-}
-</style>
+<title>UGHS Result 2025-2026</title>
 </head>
 
-<body>
-
-<div class="container">
+<body style="font-family:Arial; text-align:center;">
 
 <h2>UGHS EXAMINATION RESULT 2025-2026</h2>
+
+<p><b>District:</b> Gajapati</p>
+<p><b>Centre Name:</b> Koinpur</p>
+<p><b>Centre Code:</b> GK2025</p>
 
 <input type="text" id="roll" placeholder="Enter Roll Number">
 <button onclick="searchResult()">Search</button>
 
-<div id="result"></div>
-
-</div>
+<div id="output"></div>
 
 <script>
 
 var students = {
-
-"E-2320026":{name:"Mikha Sabar",gk:40,math:45,english:42},
-"E-2320032":{name:"Sanjaya Kumar Mandal",gk:38,math:44,english:40},
-"E-2320030":{name:"Debaraj Gamango",gk:45,math:48,english:44},
-"E-2320028":{name:"Purna Chandra Sabar",gk:35,math:42,english:43},
-"E-2320034":{name:"Sanjeeba Mandal",gk:41,math:46,english:39},
-"E-2320033":{name:"Shanku Sabar",gk:36,math:43,english:41},
-"E-2320031":{name:"Mamita Gamango",gk:42,math:47,english:38},
-"E-2320035":{name:"Stiphen Gamango",gk:39,math:44,english:40},
-"E-2320025":{name:"Umacharan Mandal",gk:37,math:45,english:41},
-"E-2320037":{name:"Jagannath Gamango",gk:44,math:46,english:43}
-
+"E-1": {name:"Student One", gk:40, math:45, english:42},
+"E-2": {name:"Student Two", gk:38, math:44, english:40},
+"E-3": {name:"Student Three", gk:45, math:48, english:44}
 };
 
 function searchResult(){
 
-var roll=document.getElementById("roll").value.trim();
-var data=students[roll];
+var roll = document.getElementById("roll").value;
+var data = students[roll];
 
 if(data){
 
 var total = data.gk + data.math + data.english;
 var status = total >= 120 ? "PASS" : "FAIL";
 
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
+"<h3>Result</h3>" +
+"Name: " + data.name + "<br>" +
+"Roll No: " + roll + "<br><br>" +
 
-"<h3>RESULT DETAILS</h3>"+
+"GK: " + data.gk + " / 70<br>" +
+"Math: " + data.math + " / 70<br>" +
+"English: " + data.english + " / 60<br><br>" +
 
-"<p><b>Roll No:</b> "+roll+"</p>"+
-"<p><b>Name:</b> "+data.name+"</p>"+
-"<p><b>District:</b> Gajapati</p>"+
-"<p><b>Centre Name:</b> Koinpur</p>"+
-"<p><b>Centre Code:</b> GK2025</p>"+
-
-"<table>"+
-"<tr><th>Subject</th><th>Full Mark</th><th>Pass Mark</th><th>Mark Secured</th></tr>"+
-
-"<tr><td>GK</td><td>70</td><td>35</td><td>"+data.gk+"</td></tr>"+
-"<tr><td>Math</td><td>70</td><td>35</td><td>"+data.math+"</td></tr>"+
-"<tr><td>English</td><td>60</td><td>30</td><td>"+data.english+"</td></tr>"+
-
-"</table>"+
-
-"<p><b>Total Marks:</b> "+total+" / 200</p>"+
-"<p><b>Pass Mark:</b> 120</p>"+
-"<p><b>Result Status:</b> "+status+"</p>";
+"<b>Total: " + total + " / 200</b><br>" +
+"<b>Status: " + status + "</b>";
 
 }
 else{
-document.getElementById("result").innerHTML="<h3>Result Not Found</h3>";
+document.getElementById("output").innerHTML = "Result Not Found";
 }
 
 }
